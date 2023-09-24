@@ -1,0 +1,18 @@
+rule UPX_packed_executable {
+   meta:
+      description = "Detects UPX packet executable"
+      author = "Doubtful Frog"
+      date = "2023-09-22"
+      tags = "esxi"
+   strings:
+      $s1 = "This file is packed with the UPX executable packer" 
+      $s2 = "the UPX Team" 
+      $s3 = "encodings"
+      $s4 = "fnmatch"
+      $s5 = "functools"
+      $s6 = "genericpath"
+      $s7 = "textwrap"
+      $s8 = "unittest"
+   condition:
+      $s1 or (5 of them)
+}

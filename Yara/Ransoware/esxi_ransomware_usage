@@ -1,0 +1,16 @@
+rule EXSI_Ransomware_Usage {
+   meta:
+      description = "Detects usage for ransomware script or elf"
+      author = "Doubtful Frog"
+      date = "2023-09-22"
+      tags = "esxi"
+   strings:
+      $s1 = "encrypt <public_key> <file_to_encrypt> [<enc_step>] [<enc_size>] [<file_size>]" 
+      $s2 = "enc_step   -   number of MB to skip while encryption"
+      $s3 = "enc_size   -   number of MB in encryption block"
+      $s4 = "file_size  -   file size in bytes (for sparse files)"
+      $s5 = "dec_step   -   number of MB to skip while encryption"
+      $s6 = "dec_size   -   number of MB in encryption block"
+   condition:
+      3 of them
+}

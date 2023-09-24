@@ -1,0 +1,18 @@
+rule Ransomware_suspicious_note {
+   meta:
+      description = "Detects common strings in ransomware programs and notes"
+      author = "Doubtful Frog"
+      date = "2023-09-22"
+      tags = "esxi"
+   strings:
+      $s1 = "encrypted" 
+      $s2 = " data "
+      $s3 = " tor " nocase
+      $s4 = "ransom"
+      $s5 = /http(s|):\/\/[a-z0-9]{56}\.onion/
+      $s6 = "HOW_TO_DECRYPT" nocase
+      $s7 = " exfiltrated "
+      $s8 = "Stopping VMs" nocase
+   condition:
+      4 of them
+}
